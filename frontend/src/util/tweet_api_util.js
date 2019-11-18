@@ -9,6 +9,5 @@ export const getUserTweets = id => {
 }
     
 export const writeTweet = data => {
-    console.log(data);
     return axios.post('/api/tweets/', data)
 }

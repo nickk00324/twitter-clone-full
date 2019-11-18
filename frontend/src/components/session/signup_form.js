@@ -6,7 +6,7 @@ const SignUpForm = props => {
   const [handle, setHandle] = useState('');
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState('');
 
   const submit = () => {
     let user = {
@@ -16,7 +16,29 @@ const SignUpForm = props => {
       password2
     };
     props.signup(user);
+    if(props.isSignedIn){
+      props.history.push("/login");
+    }
   };
+
+  useEffect( () => {
+    setErrors(props.errors);
+  }, [props.errors])
+
+  const renderErrors = () => {
+    if(!errors){
+      return null;
+    } else {
+      return (
+        <ul>
+      {Object.keys(errors).map( (error, i) => (
+        <li key={`error ${i}`}>{errors[error]}</li>
+      ))}
+    </ul>
+      )
+    }
+    
+  }
 
   return (
     <Fragment>
@@ -41,6 +63,7 @@ const SignUpForm = props => {
         onChange={e => setPassword2(e.target.value)}
       />
       <button onClick={submit}>submit</button>
+      {renderErrors()}
     </Fragment>
   );
 };
