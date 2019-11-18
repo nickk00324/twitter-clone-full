@@ -1,10 +1,10 @@
-import React, { Fragment, useState, useEffect , useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import TweetBox from './tweet_box.js';
-import { isEqual } from 'lodash'
+import '../../styles/tweets.css';
 
 const Tweets = ({ fetchTweets, tweets }) => {
-    const [currentTweets, setCurrentTweets] = useState([]);
+    const [currentTweets, setCurrentTweets] = useState(tweets);
     const [shouldGetNewTweets, setShouldGetNewTweets] = useState(true);
 
     useEffect( () => {
@@ -13,7 +13,7 @@ const Tweets = ({ fetchTweets, tweets }) => {
             setShouldGetNewTweets(false);
         }
         setCurrentTweets(tweets);
-    }, [shouldGetNewTweets])
+    }, [ [], shouldGetNewTweets])
 
     const renderTweets = () => {
       if (currentTweets.length === 0) {
@@ -23,10 +23,12 @@ const Tweets = ({ fetchTweets, tweets }) => {
           <TweetBox key={tweet._id} text={tweet.text} />
         ));
         return (
-          <Fragment>
-            <h2>here are some tweets</h2>
-            {formatted}
-          </Fragment>
+          <div className="tweets-container">
+            <div className="tweets-list">
+              <h2>here are all the tweets</h2>
+              {formatted}
+            </div>
+          </div>
         );
       }
     };

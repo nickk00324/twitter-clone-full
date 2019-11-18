@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TweetBox = ({ text }) => (
-  <div>
+  <div className="tweet-box">
     <p>{text}</p>
   </div>
 );

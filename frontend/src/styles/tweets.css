@@ -1,0 +1,14 @@
+.tweets-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tweet-box {
+    width: 100%;
+    flex-basis: 100%;
+}
+
+.tweets-list {
+
+}

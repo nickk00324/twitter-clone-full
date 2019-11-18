@@ -1,36 +1,38 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './navbar.css';
+import '../../styles/navbar.css';
 
 const NavBar = props => {
 
     const getLinks = () => {
         if(props.loggedIn){
             return (
-                <Fragment>
+                <nav className="nav-bar-links">
                     <Link to={'/tweets'}>all tweets</Link>
                     <Link to={'/profile'}>profile</Link>
                     <Link to={'/compose'}>compose</Link>
                     <button onClick={props.logout}>sign out</button>
-                </Fragment>
+                </nav>
             );
         } else {
             return (
-                <Fragment>
+                <nav className="nav-bar-links">
                     <Link to={'/signup'}>sign up</Link>
                     <Link to={'/login'}>login</Link>
-                </Fragment>
+                </nav>
             )
         }
     }
 
 
-    return(
-        <Fragment>
-            <h1>something</h1>
-            { getLinks() }
-        </Fragment>
-    )
+    return (
+      <div className="nav-bar">
+        <Link to={"/"}>
+          <p className="logo">not real twitter</p>
+        </Link>
+        {getLinks()}
+      </div>
+    );
 }
 
 export default NavBar;

@@ -1,0 +1,74 @@
+input {
+    background-color: transparent;
+    border: 1px solid salmon;
+    display: block;
+    height: 40px;
+    width: 100%;
+    color: rgb(0, 124, 161);
+    padding: 3px;
+    box-sizing: border-box;
+    font-size: 14px;
+    flex-basis: 100%;
+}
+
+button {
+    background-color: transparent;
+    border: 1px solid salmon;
+    padding: 10px 1px;
+    box-sizing: border-box;
+    color: salmon;
+    height: 40px;
+    font-size: 14px;
+}
+
+.submit {
+    width: 100%;
+}
+
+::placeholder {
+    color: lightcoral;
+}
+
+button:hover {
+    color: rgb(0, 1, 83);
+    background-color: salmon;
+    transition: all .6s;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.form {
+    width: 25%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.error {
+    color: rgb(255, 40, 40);
+}
+
+textarea {
+    resize: none;
+    background-color: rgb(61, 61, 61);
+    height: 100px;
+    width: 100%;
+    color: rgb(0, 124, 161);
+    font-size: 14px;
+    box-sizing: border-box;
+    padding: 10px;
+    transition: all .5s;
+}
+
+textarea:hover {
+    background-color: rgb(85, 85, 85)
+}

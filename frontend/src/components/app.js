@@ -11,6 +11,8 @@ import ProfileContainer from './profile/profile_container';
 import TweetComposeContainer from './tweets/tweet_compose_container';
 import TweetsContainer from './tweets/tweets_container';
 
+import '../styles/forms.css';
+
 const App = () => (
   <Fragment>
     <NavBarContainer />

@@ -1,12 +1,13 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from 'react-router-dom';
+import { isEqual } from 'lodash';
 
 const SignUpForm = props => {
   const [email, setEmail] = useState("");
   const [handle, setHandle] = useState('');
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState('');
-  const [errors, setErrors] = useState('');
+  const [errors, setErrors] = useState(props.errors);
 
   const submit = () => {
     let user = {
@@ -21,9 +22,13 @@ const SignUpForm = props => {
     }
   };
 
-  useEffect( () => {
-    setErrors(props.errors);
-  }, [props.errors])
+  useEffect(() => {
+    if (isEqual(errors, props.errors)) {
+      setErrors("");
+    } else {
+      setErrors(props.errors);
+    }
+  }, [props.errors]);
 
   const renderErrors = () => {
     if(!errors){
@@ -32,7 +37,7 @@ const SignUpForm = props => {
       return (
         <ul>
       {Object.keys(errors).map( (error, i) => (
-        <li key={`error ${i}`}>{errors[error]}</li>
+        <li className="error" key={`error ${i}`}>{errors[error]}</li>
       ))}
     </ul>
       )
@@ -41,30 +46,32 @@ const SignUpForm = props => {
   }
 
   return (
-    <Fragment>
-      <input
-        type="email"
-        placeholder="email"
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="handle"
-        onChange={e => setHandle(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        onChange={e => setPassword(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="confirm password"
-        onChange={e => setPassword2(e.target.value)}
-      />
-      <button onClick={submit}>submit</button>
-      {renderErrors()}
-    </Fragment>
+    <div className="form-container">
+      <div className="form">
+        <input
+          type="email"
+          placeholder="email"
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="handle"
+          onChange={e => setHandle(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="confirm password"
+          onChange={e => setPassword2(e.target.value)}
+        />
+        <button className="submit" onClick={submit}>submit</button>
+        {renderErrors()}
+      </div>
+    </div>
   );
 };
 
