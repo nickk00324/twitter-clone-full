@@ -17,10 +17,14 @@ const SignUpForm = props => {
       password2
     };
     props.signup(user);
-    if(props.isSignedIn){
+    
+  };
+
+  useEffect( () => {
+    if (props.isSignedIn) {
       props.history.push("/login");
     }
-  };
+  }, [props.isSignedIn])
 
   useEffect(() => {
     if (isEqual(errors, props.errors)) {
